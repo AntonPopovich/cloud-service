@@ -1,0 +1,23 @@
+version: '1.0'
+
+services:
+  cloudapp:
+    build: ./
+    container_name: cloudapp
+    image: 'cloudapp:latest'
+    ports:
+      - 8080:8080
+    environment:
+      spring.datasource.url: jdbc:postgresql://db:5432/postgres
+      spring.jpa.hibernate.ddl-auto: create-drop
+    depends_on:
+      - db
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - '5432:5432'
