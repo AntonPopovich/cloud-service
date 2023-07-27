@@ -18,7 +18,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class ApplicationConfig {
 
     private final UserRepository repository;
-
+    
+    /*
+    * Хороший синтаксис! Использование функционального интерфейса в лямбда выражении (java 8) при создании бина. 
+    */
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> repository.findByLogin(username)
